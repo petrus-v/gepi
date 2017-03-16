@@ -10,11 +10,10 @@ services:
   - mysql
 
 before_script:
-  #- bash .travis/install_mysql_5.7.sh
   - mysql --version
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
-  - mysql -u travis test < sql/structure_gepi.sql
-  - mysql -u travis test < sql/data_gepi.sql
+  - mysql test < sql/structure_gepi.sql
+  - mysql test < sql/data_gepi.sql
 
 script:
   - cd test; phpunit testsuite
