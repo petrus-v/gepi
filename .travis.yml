@@ -1,0 +1,17 @@
+lanquage: php
+
+php:
+  - '5.6'
+  - '7.0'
+  - '7.1'
+
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - mysql -u travis test < sql/structure_gepi.sql
+  - mysql -u travis test < sql/data_gepi.sql
+
+script:
+  - cd test; phpunit testsuite
